@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анна Смирнова - Фотограф</title>
+    <style>
+        /* Общие стили */
+        :root {
+            --primary-color: #F5F5DC; /* Кремовый */
+            --secondary-color: #D2B48C; /* Бежевый */
+            --text-color: #333;
+            --light-gray: #f4f4f4;
+            --brown: #8B4513;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: var(--brown);
+        }
+
+        /* Навигация */
+        #main-nav {
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        #main-nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--brown);
+            text-decoration: none;
+        }
+
+        #main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        #main-nav ul li {
+            margin-left: 20px;
+        }
+
+        #main-nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        #main-nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Главный раздел */
+        #hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--secondary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--brown);
+        }
+
+        /* Раздел "Обо мне" */
+        #about {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .about-text {
+            flex: 2;
+        }
+        
+        #about p {
+            text-align: left;
+        }
+
+        /* Портфолио */
+        #portfolio {
+            padding: 4rem 0;
+        }
+
+        .portfolio-group {
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .portfolio-group h3 {
+            text-align: center;
+            color: var(--brown);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            border-radius: 10px;
+            background-color: var(--secondary-color);
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            /* --- ИЗМЕНЕНИЕ ЗДЕСЬ: Добавляем плавный переход для анимации --- */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* --- ИЗМЕНЕНИЕ ЗДЕСЬ: Сама анимация при наведении --- */
+        .portfolio-item:hover {
+            transform: translateY(-5px); /* Слегка приподнимаем элемент */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2); /* Увеличиваем тень для эффекта "отрыва" */
+        }
+        
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            transition: transform 0.4s ease;
+            color: transparent;
+            font-size: 0;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .item-title {
+            padding: 0.8rem;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            background-color: var(--secondary-color);
+        }
+
+
+        /* Контакты */
+        #contact {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+        
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        #contact p {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--brown);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+        
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+        
+        .contact-container .btn {
+            width: 100%;
+        }
+
+
+        /* Медиа-запросы для мобильных устройств */
+        @media(max-width: 768px) {
+            #main-nav .container {
+                flex-direction: column;
+            }
+
+            #main-nav ul {
+                padding-top: 1rem;
+            }
+
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            #about p {
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-group h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav id="main-nav">
+        <div class="container">
+            <a href="#hero" class="logo">Анна Смирнова</a>
+            <ul>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Главный раздел -->
+    <header id="hero">
+        <div class="container">
+            <h1>ЛЮБИ, ЖИВИ, ТВОРИ!</h1>
+            <a href="#contact" class="btn">Связаться со мной</a>
+        </div>
+    </header>
+
+    <!-- Обо мне -->
+    <section id="about">
+        <div class="container">
+            <h2>ОБО МНЕ</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/250" alt="Фотограф Анна Смирнова">
+                </div>
+                <div class="about-text">
+                    <p>Меня зовут Анна Смирнова, и я профессиональный фотограф, специализирующийся на создании уникальных выпускных фотокниг. Моя цель - запечатлеть самые искренние эмоции и важные моменты в жизни ваших детей, создавая воспоминания, которые останутся с вами на всю жизнь.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Портфолио -->
+    <section id="portfolio">
+        <div class="container">
+            <h2>Портфолио</h2>
+            
+            <!-- Группа: Детский сад -->
+            <div class="portfolio-group">
+                <h3>Выпускные фотокниги для детского сада</h3>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Пчелки">
+                        </div>
+                        <div class="item-title"><h4>ПЧЕЛКИ</h4></div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Гномики">
+                        </div>
+                        <div class="item-title"><h4>ГНОМИКИ</h4></div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Морской">
+                        </div>
+                        <div class="item-title"><h4>МОРСКОЙ</h4></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Группа: Четвероклассники -->
+            <div class="portfolio-group">
+                <h3>Выпускные фотокниги для четвероклассников</h3>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Газета">
+                        </div>
+                        <div class="item-title"><h4>ГАЗЕТА</h4></div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Зеленый">
+                        </div>
+                        <div class="item-title"><h4>ЗЕЛЕНЫЙ</h4></div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Осенний">
+                        </div>
+                        <div class="item-title"><h4>ОСЕННИЙ</h4></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Группа: Старшеклассники -->
+            <div class="portfolio-group">
+                <h3>Выпускные фотокниги для старшеклассников</h3>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Коричневый">
+                        </div>
+                        <div class="item-title"><h4>КОРИЧНЕВЫЙ</h4></div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Алые Паруса">
+                        </div>
+                        <div class="item-title"><h4>АЛЫЕ ПАРУСА</h4></div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="image-wrapper">
+                            <img src="https://via.placeholder.com/400x400" alt="Выпускной альбом Темный">
+                        </div>
+                        <div class="item-title"><h4>ТЕМНЫЙ</h4></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact">
+        <div class="container">
+            <h2>Свяжитесь со мной</h2>
+            <p>Готовы заказать фотосессию или есть вопросы? Заполните форму ниже, и я скоро с вами свяжусь!</p>
+            <div class="contact-container">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Ваше Имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Ваш Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
