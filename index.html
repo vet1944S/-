@@ -296,7 +296,26 @@
             #hero h1 {
                 font-size: 2.5rem;
             }
-            
+
+            /* Адаптация больших текстов в шапке */
+            #hero .container > div:nth-of-type(2) {
+                font-size: 2rem !important;
+                top: 60px !important;
+            }
+
+            #hero .container > div:nth-of-type(3) {
+                font-size: 3rem !important;
+                top: 100px !important;
+            }
+
+            #hero .container > div:nth-of-type(4) {
+                bottom: 20px !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+                text-align: center !important;
+            }
+
             .about-content {
                 flex-direction: column;
             }
@@ -334,8 +353,8 @@
     <header id="hero">
         <div class="container">
             <h1>Выпускные фотокниги: детские сады и школы</h1>
-            <div style="position: absolute; top: 80px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 6rem;">Выпускные фотокниги: школы, детские сады.</div>
-            <div style="position: absolute; right: 75px; top: 50%; transform: translateY(-145px); color: #fff; text-align: right; font-size: 7rem;">Люби,<br>живи,<br>твори!</div>
+            <div style="position: absolute; top: 80px; left: 50%; transform: translateX(-50%); color: #fff; font-size: 4rem;">Выпускные фотокниги</div>
+            <div style="position: absolute; top: 160px; left: 50%; transform: translateX(-50%); color: #fff; text-align: center; font-size: 5rem;">Люби, живи, твори!</div>
             <div style="position: absolute; bottom: 20px; right: 50px; text-align: right;">
                 <a href="#contact" class="btn" style="padding-left: 42px;">Связаться со мной</a>
                 <div style="margin-top: 10px;">
