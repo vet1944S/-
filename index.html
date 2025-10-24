@@ -287,12 +287,12 @@
 /* Стили для главного заголовка */
 .hero-text h1 {
   /* clamp(МИНимальный размер, ИДЕАЛЬНЫЙ размер, МАКСимальный размер) */
-  font-size: clamp(28px, 5vw, 64px);
+  font-size: clamp(150px, 19.5vw, 300px);
 }
 
 /* Стили для подзаголовка */
 .hero-text p {
-  font-size: clamp(20px, 3.5vw, 48px);
+  font-size: clamp(16px, 3vw, 40px);
 }
 
 /*
@@ -343,6 +343,15 @@
                 text-align: center !important;
             }
 
+            /* Уменьшение кнопок соцсетей на мобильных */
+            #hero .container > div:nth-of-type(4) a {
+                width: 30px !important;
+                height: 30px !important;
+                line-height: 30px !important;
+                margin: 0 10px !important;
+                font-size: 1rem !important;
+            }
+
             .about-content {
                 flex-direction: column;
             }
@@ -380,10 +389,10 @@
     <header id="hero">
         <div class="container">
             <h1>Выпускные фотокниги: детские сады и школы</h1>
-            <div class="hero-text" style="position: absolute; top: 80px; left: 50%; transform: translateX(-50%); color: #fff;">
+            <div class="hero-text" style="position: absolute; top: 115px; left: 50%; transform: translateX(-50%); color: #fff;">
                 <h1>Выпускные фотокниги</h1>
             </div>
-            <div class="hero-text" style="position: absolute; top: 160px; left: 50%; transform: translateX(-50%); color: #fff; text-align: center;">
+            <div class="hero-text" style="position: absolute; top: 215px; left: 50%; transform: translateX(-50%); color: #fff; text-align: center;">
                 <p>Люби, живи, твори!</p>
             </div>
             <div style="position: absolute; bottom: 20px; right: 50px; text-align: right;">
