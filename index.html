@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анна Смирнова - Фотограф</title>
+    <title>Светлана Черных - Фотограф</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Общие стили */
         :root {
@@ -41,7 +44,7 @@
         h2 {
             text-align: center;
             margin-bottom: 2rem;
-            font-size: 2.5rem;
+            font-size: clamp(24px, 4vw, 40px);
             color: var(--brown);
         }
 
@@ -87,24 +90,84 @@
             color: var(--secondary-color);
         }
 
-        /* Главный раздел */
-        #hero {
-            height: 100vh;
+        /* --- НОВЫЙ, УЛУЧШЕННЫЙ КОД --- */
+        .hero-header {
             display: flex;
+            align-items: flex-start; /* <-- ИЗМЕНЕНИЕ 1: Выравниваем по ВЕРХНЕМУ краю */
             justify-content: center;
-            align-items: flex-start;
-            text-align: center;
-            color: #fff;
-            background: url('Шапка 5.jpg') no-repeat center center/cover;
+
+            padding-top: 5vh; /* <-- ИЗМЕНЕНИЕ 2: Добавляем управляемый отступ сверху */
+
+            height: 100vh;
+            background-image: url('Шапка 5.jpg'); /* Ваш фон */
+            background-size: cover;
+            background-position: center;
         }
 
-        #hero h1 {
-            font-size: 1.333rem;
-            margin-bottom: 1rem;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+        .hero-content {
+            /* Говорим контейнеру с контентом тоже быть гибким */
+            display: flex;
+            flex-direction: column; /* <-- САМОЕ ГЛАВНОЕ! Ставим все элементы ДРУГ ПОД ДРУГА */
+            align-items: center;   /* Выравниваем все по центру */
+            gap: 30px; /* Расстояние между текстом и кнопками */
+            text-align: center;
+        }
+
+        /* Стили для текста */
+        .hero-text h1, .hero-text p {
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Тень для читаемости */
+        }
+
+        .hero-text h1 {
+            font-size: clamp(36px, 8vw, 60px); /* Адаптивный шрифт */
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: clamp(18px, 4vw, 24px); /* Адаптивный шрифт */
+        }
+
+        /* Стили для кнопок и иконок */
+        .hero-actions {
+            display: flex;
+            flex-direction: column; /* Кнопка и иконки тоже друг под другом */
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .icon-vk, .icon-tg, .icon-wa {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-vk {
+            background: #0077ff;
+        }
+
+        .icon-tg {
+            background: #0088cc;
+        }
+
+        .icon-wa {
+            background: #25d366;
+        }
+
+        .icon-vk:hover, .icon-tg:hover, .icon-wa:hover {
+            transform: scale(1.1);
         }
 
         .btn {
@@ -231,6 +294,13 @@
             background-color: var(--secondary-color);
         }
 
+        .item-title h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
 
         /* Контакты */
         #contact {
@@ -241,6 +311,9 @@
         .contact-container {
             max-width: 700px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #contact p {
@@ -282,33 +355,12 @@
             width: 100%;
         }
 
-/* --- НОВЫЙ, АДАПТИВНЫЙ КОД --- */
+        .social-icon:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
 
-/* Стили для главного заголовка */
-.hero-text h1 {
-  /* clamp(МИНимальный размер, ИДЕАЛЬНЫЙ размер, МАКСимальный размер) */
-  font-size: clamp(150px, 19.5vw, 300px);
-}
 
-/* Стили для подзаголовка */
-.hero-text p {
-  font-size: clamp(16px, 3vw, 40px);
-}
-
-/*
-   МЕДИА-ЗАПРОС:
-   Дополнительная настройка для очень узких экранов (меньше 480px)
-*/
-@media (max-width: 480px) {
-  .hero-text {
-    /* Можно немного уменьшить отступы на мобильных */
-    padding: 0 15px;
-  }
-
-  .hero-text h1 {
-    line-height: 1.2; /* Немного уменьшаем межстрочный интервал, чтобы строки были ближе */
-  }
-}
 
         /* Медиа-запросы для мобильных устройств */
         @media(max-width: 768px) {
@@ -320,42 +372,47 @@
                 padding-top: 1rem;
             }
 
-            #hero h1 {
-                font-size: 2.5rem;
+            .hero-header {
+                align-items: center; /* Центрируем контент по вертикали на мобильных */
+                padding: 2rem 1rem;
+                padding-top: 20px; /* Убираем большой padding-top на мобильных */
             }
 
-            /* Адаптация больших текстов в шапке */
-            #hero .container > div:nth-of-type(2) {
-                font-size: 2rem !important;
-                top: 60px !important;
+            .hero-content {
+                gap: 1rem;
             }
 
-            #hero .container > div:nth-of-type(3) {
-                font-size: 3rem !important;
-                top: 100px !important;
+            .hero-text h1 {
+                font-size: clamp(50px, 15vw, 150px);
             }
 
-            #hero .container > div:nth-of-type(4) {
-                bottom: 20px !important;
-                left: 50% !important;
-                right: auto !important;
-                transform: translateX(-50%) !important;
-                text-align: center !important;
+            .hero-text p {
+                font-size: clamp(14px, 4vw, 24px);
             }
 
-            /* Уменьшение кнопок соцсетей на мобильных */
-            #hero .container > div:nth-of-type(4) a {
-                width: 30px !important;
-                height: 30px !important;
-                line-height: 30px !important;
-                margin: 0 10px !important;
-                font-size: 1rem !important;
+            .hero-actions {
+                gap: 0.5rem;
+            }
+
+            .social-icons {
+                gap: 0.5rem;
+            }
+
+            .icon-vk, .icon-tg, .icon-wa {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 1rem;
             }
 
             .about-content {
                 flex-direction: column;
             }
-            
+
+            #about .container {
+                padding: 0 10px;
+            }
+
             #about p {
                 text-align: center;
                 margin-top: 1rem;
@@ -364,11 +421,29 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .portfolio-group h3 {
                 font-size: 1.5rem;
             }
+
+            .contact-container {
+                padding: 0 10px;
+            }
         }
+
+        /* Медиа-запросы для больших экранов (десктоп) */
+        @media(min-width: 769px) {
+            .hero-actions {
+                flex-direction: row; /* На больших экранах кнопка и иконки в ряд */
+                gap: 20px;
+            }
+
+            .social-icons {
+                gap: 10px;
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -385,22 +460,23 @@
         </div>
     </nav>
 
-    <!-- Главный раздел -->
-    <header id="hero">
-        <div class="container">
-            <h1>Выпускные фотокниги: детские сады и школы</h1>
-            <div class="hero-text" style="position: absolute; top: 115px; left: 50%; transform: translateX(-50%); color: #fff;">
+    <!-- ======================= ШАПКА САЙТА (HERO SECTION) ======================= -->
+    <header class="hero-header">
+        <!-- Общий контейнер для всего контента в шапке -->
+        <div class="hero-content">
+            <!-- Текстовый блок -->
+            <div class="hero-text">
                 <h1>Выпускные фотокниги</h1>
+                <p>для детских садов и школ</p> <!-- Разделим текст для лучшей адаптивности -->
             </div>
-            <div class="hero-text" style="position: absolute; top: 215px; left: 50%; transform: translateX(-50%); color: #fff; text-align: center;">
-                <p>Люби, живи, твори!</p>
-            </div>
-            <div style="position: absolute; bottom: 20px; right: 50px; text-align: right;">
-                <a href="#contact" class="btn" style="padding-left: 42px;">Связаться со мной</a>
-                <div style="margin-top: 10px;">
-                    <a href="#" style="display: inline-block; width: 40px; height: 40px; background: #0077ff; border-radius: 50%; color: #fff; text-align: center; line-height: 40px; margin: 0 15px; font-size: 1.2rem; text-decoration: none;">VK</a>
-                    <a href="#" style="display: inline-block; width: 40px; height: 40px; background: #0088cc; border-radius: 50%; color: #fff; text-align: center; line-height: 40px; margin: 0 15px; font-size: 1.2rem; text-decoration: none;">TG</a>
-                    <a href="#" style="display: inline-block; width: 40px; height: 40px; background: #25d366; border-radius: 50%; color: #fff; text-align: center; line-height: 40px; margin: 0 15px; font-size: 1.2rem; text-decoration: none;">WA</a>
+
+            <!-- Блок с кнопками и ссылками -->
+            <div class="hero-actions">
+                <a href="#contact" class="btn">Связаться со мной</a>
+                <div class="social-icons">
+                    <a href="#" class="icon-vk">VK</a>
+                    <a href="#" class="icon-tg">TG</a>
+                    <a href="#" class="icon-wa">WA</a>
                 </div>
             </div>
         </div>
@@ -412,10 +488,10 @@
             <h2>ОБО МНЕ</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="Обо мне..jpg" alt="Фотограф Анна Смирнова">
+                    <img src="Обо мне..jpg" alt="Фотограф Светлана Черных">
                 </div>
                 <div class="about-text">
-                    <p>Меня зовут Анна Смирнова, и я профессиональный фотограф, специализирующийся на создании уникальных выпускных фотокниг. Моя цель - запечатлеть самые искренние эмоции и важные моменты в жизни ваших детей, создавая воспоминания, которые останутся с вами на всю жизнь.</p>
+                    <p>Меня зовут Светлана Черных, и я профессиональный фотограф, специализирующийся на создании уникальных выпускных фотокниг. Моя цель - запечатлеть самые искренние эмоции и важные моменты в жизни ваших детей, создавая воспоминания, которые останутся с вами на всю жизнь.</p>
                 </div>
             </div>
         </div>
