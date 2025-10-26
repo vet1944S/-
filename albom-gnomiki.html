@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Альбом Гномики - Светлана Черных</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        :root {
+            --primary-color: #F5F5DC; /* Кремовый */
+            --secondary-color: #D2B48C; /* Бежевый */
+            --text-color: #333;
+            --light-gray: #f4f4f4;
+            --brown: #8B4513;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: clamp(24px, 4vw, 40px);
+            color: var(--brown);
+        }
+
+        /* Навигация */
+        #main-nav {
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        #main-nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--brown);
+            text-decoration: none;
+        }
+
+        #main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        #main-nav ul li {
+            margin-left: 20px;
+        }
+
+        #main-nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        #main-nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Галерея */
+        #gallery {
+            padding: 4rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            background-color: var(--secondary-color);
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .item-title {
+            padding: 0.8rem;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            background-color: var(--secondary-color);
+        }
+
+        .item-title h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* Цена */
+        #price {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+
+        .price-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .price-box {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .price-box h3 {
+            color: var(--brown);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .price-box p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .price-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--brown);
+        }
+
+        /* Кнопка назад */
+        .back-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--secondary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .back-btn:hover {
+            background: var(--brown);
+        }
+
+        /* Медиа-запросы для мобильных устройств */
+        @media(max-width: 768px) {
+            #main-nav .container {
+                flex-direction: column;
+            }
+
+            #main-nav ul {
+                padding-top: 1rem;
+            }
+
+            .container {
+                padding: 0 10px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .price-box {
+                padding: 1.5rem;
+            }
+
+            .price-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav id="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">Светлана Черных</a>
+            <ul>
+                <li><a href="index.html#about">Обо мне</a></li>
+                <li><a href="index.html#portfolio">Портфолио</a></li>
+                <li><a href="index.html#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Заголовок -->
+    <section id="header">
+        <div class="container">
+            <h1>Альбом Гномики</h1>
+            <p><strong>Выпускная фотокнига "Гномики" — Сохраните волшебство детского сада!</strong></p>
+            <p>Подарите своему ребенку настоящую сказку на память о беззаботных днях в детском саду с нашей новой выпускной фотокнигой "Гномики". Это не просто альбом, а целое путешествие в мир теплых воспоминаний, оформленное в нежном акварельном стиле с очаровательными сказочными персонажами.</p>
+            <p>Каждая страница этой книги создана с любовью, чтобы вы могли год за годом возвращаться к самым трогательным и радостным моментам этого важного этапа в жизни вашего ребенка.</p>
+        </div>
+    </section>
+
+    <!-- Галерея разворотов -->
+    <section id="gallery">
+        <div class="container">
+            <h2>Примеры разворотов</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="image-wrapper">
+                        <img src="gnomiki individualnaya oblozhka.jpg" alt="Индивидуальная обложка Гномики">
+                    </div>
+                    <div class="item-title"><h4>Обложка</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-wrapper">
+                        <img src="gnomiki-razvorot-1.jpg" alt="Разворот 1 альбома Гномики">
+                    </div>
+                    <div class="item-title"><h4>Разворот 1</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-wrapper">
+                        <img src="gnomiki-razvorot-2.jpg" alt="Разворот 2 альбома Гномики">
+                    </div>
+                    <div class="item-title"><h4>Разворот 2</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-wrapper">
+                        <img src="gnomiki-razvorot-3.jpg" alt="Разворот 3 альбома Гномики">
+                    </div>
+                    <div class="item-title"><h4>Разворот 3</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-wrapper">
+                        <img src="gnomiki-razvorot-4.jpg" alt="Разворот 4 альбома Гномики">
+                    </div>
+                    <div class="item-title"><h4>Разворот 4</h4></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="image-wrapper">
+                        <img src="gnomiki-razvorot-5.jpg" alt="Разворот 5 альбома Гномики">
+                    </div>
+                    <div class="item-title"><h4>Разворот 5</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цена -->
+    <section id="price">
+        <div class="container">
+            <div class="price-content">
+                <div class="price-box">
+                    <h3>Стоимость альбома</h3>
+                    <p>Выпускная фотокнига "Гномики" включает профессиональную съемку, дизайн и печать в типографии.</p>
+                    <div class="price-value">От 2700 руб.</div>
+                </div>
+                <a href="index.html#contact" class="back-btn">Заказать альбом</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
