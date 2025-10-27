@@ -205,6 +205,105 @@
             background: var(--brown);
         }
 
+        /* --- УЛУЧШЕННЫЕ СТИЛИ ДЛЯ КАЛЬКУЛЯТОРА --- */
+
+        /* Общий контейнер калькулятора */
+        .calculator {
+            max-width: 450px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        /* Главный заголовок H2 */
+        .calculator h2 {
+            font-size: 28px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        /* Группа элементов (label + input) */
+        .calculator .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Текстовые метки (label) */
+        .calculator label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Поля для ввода и выбора */
+        .calculator input,
+        .calculator select {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Эффект при клике на поле ввода */
+        .calculator input:focus,
+        .calculator select:focus {
+            outline: none;
+            border-color: #a78a7f;
+            box-shadow: 0 0 5px rgba(167, 138, 127, 0.5);
+        }
+
+        /* Блок с итоговой стоимостью */
+        .calculator .result {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        /* Текст "Итоговая стоимость:" */
+        .calculator .result p {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* САМЫЙ ГЛАВНЫЙ АКЦЕНТ - ЦЕНА */
+        .calculator .result #total-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #8b4513;
+            margin-left: 10px;
+        }
+
+        .calculator button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--secondary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .calculator button:hover {
+            background: var(--brown);
+        }
+
         /* Медиа-запросы для мобильных устройств */
         @media(max-width: 768px) {
             #main-nav .container {
@@ -230,6 +329,10 @@
 
             .price-value {
                 font-size: 1.5rem;
+            }
+
+            .calculator {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -308,16 +411,29 @@
     <!-- Цена -->
     <section id="price">
         <div class="container">
-            <div class="price-content">
-                <div class="price-box">
-                    <h3>Стоимость альбома</h3>
-                    <p>Выпускная фотокнига "Темный" включает профессиональную съемку, дизайн и печать в типографии.</p>
-                    <div class="price-value">От 2700 руб.</div>
-                </div>
-                <a href="index.html#contact" class="back-btn">Заказать альбом</a>
-            </div>
+            <div class="calculator">
+        <h2>Рассчитайте стоимость вашей фотокниги</h2>
+
+        <div class="form-group">
+            <label for="spreads">Количество разворотов (от 2 до 30):</label>
+            <input type="number" id="spreads" value="2" min="2" max="30">
         </div>
+
+        <div class="form-group">
+            <label for="cover-type">Тип обложки:</label>
+            <select id="cover-type">
+                <option value="generic">Общая (стандартный дизайн)</option>
+                <option value="individual">Индивидуальная (с вашим фото)</option>
+            </select>
+        </div>
+
+                <div class="result">
+                    <p>Итоговая стоимость: <span id="total-price">0</span> ₽</p>
+                </div>
+                <button>Заказать альбом</button>
+    </div>
     </section>
 
+    <script src="calculator.js"></script>
 </body>
 </html>
