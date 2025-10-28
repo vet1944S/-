@@ -443,6 +443,66 @@
             }
         }
 
+        /* --- СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА --- */
+
+        /* Фон модального окна (по умолчанию скрыт) */
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000; /* Поверх всех элементов */
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.85); /* Полупрозрачный черный фон */
+        }
+
+        /* Изображение внутри модального окна */
+        .modal-content {
+          margin: auto;
+          display: block;
+          width: auto;
+          max-width: 80%; /* Максимальная ширина - 80% от ширины экрана */
+          max-height: 90vh; /* Максимальная высота - 90% от высоты экрана */
+          /* Анимация появления */
+          animation-name: zoom;
+          animation-duration: 0.4s;
+        }
+
+        /* Анимация */
+        @keyframes zoom {
+          from {transform: scale(0.5)}
+          to {transform: scale(1)}
+        }
+
+        /* Кнопка "Закрыть" (крестик) */
+        .close {
+          position: absolute;
+          top: 20px;
+          right: 35px;
+          color: #f1f1f1;
+          font-size: 40px;
+          font-weight: bold;
+          transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #bbb;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        /* Делаем картинки-триггеры кликабельными на вид */
+        .modal-trigger {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .modal-trigger:hover {
+            opacity: 0.8;
+        }
+
 
     </style>
 </head>
@@ -534,19 +594,19 @@
                 </div>
                 <h3 style="text-align: center; margin: 2rem auto;">Общие обложки</h3>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/1. pchelki.jpg')">
                         <div class="image-wrapper">
                             <img src="1. pchelki.jpg" alt="Выпускной альбом Пчелки">
                         </div>
                         <div class="item-title"><h4>ПЧЕЛКИ</h4></div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/2.-gnomiki.jpg')">
                         <div class="image-wrapper">
                             <img src="2. gnomiki.jpg" alt="Выпускной альбом Гномики">
                         </div>
                         <div class="item-title"><h4>ГНОМИКИ</h4></div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/3. morskoy.jpg')">
                         <div class="image-wrapper">
                             <img src="3. morskoy.jpg" alt="Выпускной альбом Морской">
                         </div>
@@ -571,7 +631,7 @@
                     <div class="portfolio-item">
                         <a href="albom-zeleniy.html">
                             <div class="image-wrapper">
-                                <img src="5.5. zeleniy..jpg" alt="Выпускной альбом Зеленый">
+                                <img src="5.5. zeleniy.jpg" alt="Выпускной альбом Зеленый">
                             </div>
                         </a>
                         <div class="item-title"><h4>ЗЕЛЕНЫЙ</h4></div>
@@ -587,19 +647,19 @@
                 </div>
                 <h3 style="text-align: center; margin: 2rem auto;">Общие обложки</h3>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/4. gazeta.jpg')">
                         <div class="image-wrapper">
                             <img src="4. gazeta.jpg" alt="Выпускной альбом Газета">
                         </div>
                         <div class="item-title"><h4>ГАЗЕТА</h4></div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/5. zeleniy.jpg')">
                         <div class="image-wrapper">
                             <img src="5. zeleniy.jpg" alt="Выпускной альбом Зеленый">
                         </div>
                         <div class="item-title"><h4>ЗЕЛЕНЫЙ</h4></div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/6. osenniy.jpg')">
                         <div class="image-wrapper">
                             <img src="6. osenniy.jpg" alt="Выпускной альбом Осенний">
                         </div>
@@ -640,19 +700,19 @@
                 </div>
                 <h3 style="text-align: center; margin: 2rem auto;">Общие обложки</h3>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/7. korichnevyy.jpg')">
                         <div class="image-wrapper">
                             <img src="7. korichnevyy.jpg" alt="Выпускной альбом Коричневый">
                         </div>
                         <div class="item-title"><h4>КОРИЧНЕВЫЙ</h4></div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/8. alye parusa.jpg')">
                         <div class="image-wrapper">
                             <img src="8. alye parusa.jpg" alt="Выпускной альбом Алые Паруса">
                         </div>
                         <div class="item-title"><h4>АЛЫЕ ПАРУСА</h4></div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/9. temnyy.jpg')">
                         <div class="image-wrapper">
                             <img src="9. temnyy.jpg" alt="Выпускной альбом Темный">
                         </div>
@@ -687,6 +747,14 @@
             </div>
         </div>
     </section>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
