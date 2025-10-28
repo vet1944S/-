@@ -443,40 +443,48 @@
             }
         }
 
-        /* --- СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА --- */
+        /* --- УЛУЧШЕННЫЕ СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА (версия 2.0) --- */
 
-        /* Фон модального окна (по умолчанию скрыт) */
+        /* Фон модального окна */
         .modal {
-          display: none;
+          display: none; /* По-прежнему скрыт по умолчанию */
           position: fixed;
-          z-index: 1000; /* Поверх всех элементов */
+          z-index: 1000;
           left: 0;
           top: 0;
           width: 100%;
           height: 100%;
-          overflow: auto;
-          background-color: rgba(0,0,0,0.85); /* Полупрозрачный черный фон */
+          background-color: rgba(0,0,0,0.85);
+
+          /* === ИЗМЕНЕНИЕ №1: Центрирование === */
+          /* Превращаем фон в flex-контейнер для идеального центрирования */
+          display: flex; /* <-- ВАЖНО: будет включаться через JS */
+          align-items: center; /* Центрирование по вертикали */
+          justify-content: center; /* Центрирование по горизонтали */
+
+          /* Скрываем его, пока JS не изменит display */
+          display: none;
         }
 
         /* Изображение внутри модального окна */
         .modal-content {
-          margin: auto;
           display: block;
           width: auto;
-          max-width: 80%; /* Максимальная ширина - 80% от ширины экрана */
-          max-height: 90vh; /* Максимальная высота - 90% от высоты экрана */
-          /* Анимация появления */
+          max-width: 90%; /* Немного увеличим для мобильных */
+          max-height: 85vh; /* Оставляем запас сверху и снизу */
+
+          /* === ИЗМЕНЕНИЕ №2: Плавная анимация === */
           animation-name: zoom;
-          animation-duration: 0.4s;
+          animation-duration: 0.7s; /* <-- СДЕЛАЛИ МЕДЛЕННЕЕ (было 0.4s) */
         }
 
-        /* Анимация */
+        /* Сама анимация (без изменений) */
         @keyframes zoom {
-          from {transform: scale(0.5)}
-          to {transform: scale(1)}
+          from {transform: scale(0.5); opacity: 0;}
+          to {transform: scale(1); opacity: 1;}
         }
 
-        /* Кнопка "Закрыть" (крестик) */
+        /* Кнопка "Закрыть" (крестик) (без изменений) */
         .close {
           position: absolute;
           top: 20px;
@@ -485,6 +493,7 @@
           font-size: 40px;
           font-weight: bold;
           transition: 0.3s;
+          z-index: 1001; /* Убедимся, что крестик поверх картинки */
         }
 
         .close:hover,
@@ -494,7 +503,7 @@
           cursor: pointer;
         }
 
-        /* Делаем картинки-триггеры кликабельными на вид */
+        /* Картинки-триггеры (без изменений) */
         .modal-trigger {
             cursor: pointer;
             transition: opacity 0.2s;
