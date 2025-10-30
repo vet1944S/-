@@ -141,6 +141,61 @@
             background-color: var(--secondary-color);
         }
 
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            display: block;
+            width: auto;
+            max-width: 90%;
+            max-height: 85vh;
+            animation-name: zoom;
+            animation-duration: 0.7s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.5); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-trigger {
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .modal-trigger:hover {
+            opacity: 0.8;
+        }
+
         .item-title h4 {
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
@@ -368,40 +423,52 @@
             <h2>Примеры разворотов</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="Pchelki individualnaya oblozhka.jpg" alt="Индивидуальная обложка Пчелки">
+                    <div onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/pchelki-individualnaya-oblozhka-full.jpg')" class="modal-trigger">
+                        <div class="image-wrapper">
+                            <img src="pchelki-individualnaya-oblozhka.jpg" alt="Индивидуальная обложка Пчелки">
+                        </div>
+                        <div class="item-title"><h4>Обложка</h4></div>
                     </div>
-                    <div class="item-title"><h4>Обложка</h4></div>
                 </div>
                 <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="pchelki-razvorot-1.jpg" alt="Разворот 1 альбома Пчелки">
+                    <div onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/pchelki-razvorot-1-full.jpg')" class="modal-trigger">
+                        <div class="image-wrapper">
+                            <img src="pchelki-razvorot-1.jpg" alt="Разворот 1 альбома Пчелки">
+                        </div>
+                        <div class="item-title"><h4>Разворот 1</h4></div>
                     </div>
-                    <div class="item-title"><h4>Разворот 1</h4></div>
                 </div>
                 <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="pchelki-razvorot-2.jpg" alt="Разворот 2 альбома Пчелки">
+                    <div onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/pchelki-razvorot-2-full.jpg')" class="modal-trigger">
+                        <div class="image-wrapper">
+                            <img src="pchelki-razvorot-2.jpg" alt="Разворот 2 альбома Пчелки">
+                        </div>
+                        <div class="item-title"><h4>Разворот 2</h4></div>
                     </div>
-                    <div class="item-title"><h4>Разворот 2</h4></div>
                 </div>
                 <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="pchelki-razvorot-3.jpg" alt="Разворот 3 альбома Пчелки">
+                    <div onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/pchelki-razvorot-3-full.jpg')" class="modal-trigger">
+                        <div class="image-wrapper">
+                            <img src="pchelki-razvorot-3.jpg" alt="Разворот 3 альбома Пчелки">
+                        </div>
+                        <div class="item-title"><h4>Разворот 3</h4></div>
                     </div>
-                    <div class="item-title"><h4>Разворот 3</h4></div>
                 </div>
                 <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="pchelki-razvorot-4.jpg" alt="Разворот 4 альбома Пчелки">
+                    <div onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/pchelki-razvorot-4-full.jpg')" class="modal-trigger">
+                        <div class="image-wrapper">
+                            <img src="pchelki-razvorot-4.jpg" alt="Разворот 4 альбома Пчелки">
+                        </div>
+                        <div class="item-title"><h4>Разворот 4</h4></div>
                     </div>
-                    <div class="item-title"><h4>Разворот 4</h4></div>
                 </div>
                 <div class="gallery-item">
-                    <div class="image-wrapper">
-                        <img src="pchelki-razvorot-5.jpg" alt="Разворот 5 альбома Пчелки">
+                    <div onclick="openModal('bol\'shie kartinki dlya modal\'nykh okon obshchey oblozhki/pchelki-razvorot-5-full.jpg')" class="modal-trigger">
+                        <div class="image-wrapper">
+                            <img src="pchelki-razvorot-5.jpg" alt="Разворот 5 альбома Пчелки">
+                        </div>
+                        <div class="item-title"><h4>Разворот 5</h4></div>
                     </div>
-                    <div class="item-title"><h4>Разворот 5</h4></div>
                 </div>
             </div>
         </div>
@@ -431,6 +498,43 @@
         </div>
     </section>
 
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script>
+        // Функция для открытия модального окна
+        function openModal(src) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+
+            modal.style.display = 'flex';
+            modalImg.src = src;
+        }
+
+        // Функция для закрытия модального окна
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        // Закрытие модального окна при клике вне изображения
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        // Закрытие модального окна при нажатии клавиши Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
     <script src="calculator.js"></script>
 </body>
 </html>

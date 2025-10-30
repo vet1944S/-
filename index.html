@@ -32,6 +32,7 @@
             line-height: 1.6;
             background-color: var(--primary-color);
             color: var(--text-color);
+            overflow-x: hidden;
         }
 
         .container {
@@ -99,9 +100,65 @@
             padding-top: 5vh; /* <-- ИЗМЕНЕНИЕ 2: Добавляем управляемый отступ сверху */
 
             height: 100vh;
-            background-image: url('Шапка 5.jpg'); /* Ваш фон */
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            overflow: hidden;
+            /* background-image: url('Шапка 5.jpg'); /* Закомментировано, теперь видео */
+            /* background-size: cover;
+            background-position: center; */
+        }
+
+        .hero-header video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Стили для карусели */
+        .carousel-container {
+            position: absolute;
+            bottom: 200px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-container::before,
+        .carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+        }
+
+        .carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .carousel-track {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+
+        .carousel-image {
+            height: 400px;
+            margin-right: 50px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .hero-content {
@@ -116,7 +173,7 @@
         /* Стили для текста */
         .hero-text h1, .hero-text p {
             color: white;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Тень для читаемости */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7), 0px 2px 5px rgba(0, 0, 0, 0.5); /* Тень для читаемости */
         }
 
         .hero-text h1 {
@@ -146,46 +203,36 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            color: #fff;
+            background-color: transparent;
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
             text-align: center;
             line-height: 40px;
             font-size: 1.2rem;
             text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .icon-vk {
-            background: #0077ff;
-        }
-
-        .icon-tg {
-            background: #0088cc;
-        }
-
-        .icon-wa {
-            background: #25d366;
+            transition: background-color 0.3s ease;
         }
 
         .icon-vk:hover, .icon-tg:hover, .icon-wa:hover {
-            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: var(--secondary-color);
-            color: #fff;
+            background-color: transparent;
+            border: 2px solid #FFFFFF;
+            color: #FFFFFF;
             text-decoration: none;
             border-radius: 5px;
             margin-top: 1rem;
             transition: background-color 0.3s ease;
-            border: none;
             cursor: pointer;
             font-size: 1rem;
         }
 
         .btn:hover {
-            background: var(--brown);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Раздел "Обо мне" */
@@ -292,6 +339,11 @@
             color: #fff;
             font-weight: bold;
             background-color: var(--secondary-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .portfolio-item:hover .item-title {
+            background-color: var(--brown);
         }
 
         .item-title h4 {
@@ -531,6 +583,35 @@
 
     <!-- ======================= ШАПКА САЙТА (HERO SECTION) ======================= -->
     <header class="hero-header">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/sparkles.mp4" type="video/mp4">
+        </video>
+        <!-- Контейнер-маска, который обрезает все лишнее -->
+        <div class="carousel-container">
+          <!-- Длинная лента с картинками, которая будет двигаться -->
+          <div class="carousel-track">
+            <!-- Оригинальный набор картинок -->
+            <img src="assets/images/book1.jpg" alt="Обложка фотокниги 1" class="carousel-image">
+            <img src="assets/images/book2.jpg" alt="Обложка фотокниги 2" class="carousel-image">
+            <img src="assets/images/book3.jpg" alt="Обложка фотокниги 3" class="carousel-image">
+            <img src="assets/images/book4.jpg" alt="Обложка фотокниги 4" class="carousel-image">
+            <img src="assets/images/book5.jpg" alt="Обложка фотокниги 5" class="carousel-image">
+            <img src="assets/images/book6.jpg" alt="Обложка фотокниги 6" class="carousel-image">
+            <img src="assets/images/book7.jpg" alt="Обложка фотокниги 7" class="carousel-image">
+            <img src="assets/images/book8.jpg" alt="Обложка фотокниги 8" class="carousel-image">
+            <img src="assets/images/book9.jpg" alt="Обложка фотокниги 9" class="carousel-image">
+            <!-- Дублируем набор картинок для создания бесшовного эффекта -->
+            <img src="assets/images/book1.jpg" alt="Обложка фотокниги 1" class="carousel-image">
+            <img src="assets/images/book2.jpg" alt="Обложка фотокниги 2" class="carousel-image">
+            <img src="assets/images/book3.jpg" alt="Обложка фотокниги 3" class="carousel-image">
+            <img src="assets/images/book4.jpg" alt="Обложка фотокниги 4" class="carousel-image">
+            <img src="assets/images/book5.jpg" alt="Обложка фотокниги 5" class="carousel-image">
+            <img src="assets/images/book6.jpg" alt="Обложка фотокниги 6" class="carousel-image">
+            <img src="assets/images/book7.jpg" alt="Обложка фотокниги 7" class="carousel-image">
+            <img src="assets/images/book8.jpg" alt="Обложка фотокниги 8" class="carousel-image">
+            <img src="assets/images/book9.jpg" alt="Обложка фотокниги 9" class="carousel-image">
+          </div>
+        </div>
         <!-- Общий контейнер для всего контента в шапке -->
         <div class="hero-content">
             <!-- Текстовый блок -->
