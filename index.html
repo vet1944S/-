@@ -41,7 +41,7 @@
             overflow: hidden;
             padding: 0 20px;
         }
-        
+
         h2 {
             text-align: center;
             margin-bottom: 2rem;
@@ -161,6 +161,10 @@
             100% { transform: translateX(-50%); }
         }
 
+        .mobile-hero-image {
+            display: none;
+        }
+
         .hero-content {
             /* Говорим контейнеру с контентом тоже быть гибким */
             display: flex;
@@ -265,7 +269,7 @@
         .about-text {
             flex: 2;
         }
-        
+
         #about p {
             text-align: left;
         }
@@ -306,13 +310,13 @@
             /* --- ИЗМЕНЕНИЕ ЗДЕСЬ: Добавляем плавный переход для анимации --- */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         /* --- ИЗМЕНЕНИЕ ЗДЕСЬ: Сама анимация при наведении --- */
         .portfolio-item:hover {
             transform: translateY(-5px); /* Слегка приподнимаем элемент */
             box-shadow: 0 8px 15px rgba(0,0,0,0.2); /* Увеличиваем тень для эффекта "отрыва" */
         }
-        
+
         .image-wrapper {
             position: relative;
             overflow: hidden;
@@ -332,7 +336,7 @@
         .portfolio-item:hover img {
             transform: scale(1.1);
         }
-        
+
         .item-title {
             padding: 0.8rem;
             text-align: center;
@@ -353,13 +357,12 @@
             font-weight: 600;
         }
 
-
         /* Контакты */
         #contact {
             padding: 4rem 0;
             background: var(--light-gray);
         }
-        
+
         .contact-container {
             max-width: 700px;
             margin: 0 auto;
@@ -372,17 +375,17 @@
             text-align: center;
             margin-bottom: 2rem;
         }
-        
+
         .form-group {
             margin-bottom: 1rem;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             color: var(--brown);
         }
-        
+
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -397,12 +400,12 @@
             outline: none;
             border-color: var(--secondary-color);
         }
-        
+
         textarea {
             resize: vertical;
             height: 150px;
         }
-        
+
         .contact-container .btn {
             width: 100%;
         }
@@ -411,8 +414,6 @@
             transform: scale(1.1);
             transition: transform 0.3s ease;
         }
-
-
 
         /* Медиа-запросы для мобильных устройств */
         @media(max-width: 768px) {
@@ -428,6 +429,33 @@
                 align-items: center; /* Центрируем контент по вертикали на мобильных */
                 padding: 2rem 1rem;
                 padding-top: 20px; /* Убираем большой padding-top на мобильных */
+            }
+
+            .carousel-container {
+                display: none;
+            }
+
+            .mobile-hero-image {
+                display: block;
+                position: absolute;
+                bottom: 200px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                max-width: 400px;
+            }
+
+            .mobile-hero-image img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
+
+            .hero-text {
+                width: 90%;
+                text-align: center;
+                margin-bottom: 20px;
             }
 
             .hero-content {
@@ -564,7 +592,54 @@
             opacity: 0.8;
         }
 
+        /* --- Стили для мобильной адаптации шапки --- */
 
+        /* Сначала прячем мобильную картинку на больших экранах */
+        .mobile-hero-image {
+          display: none;
+        }
+
+        /* Применяем стили, когда ширина экрана 768px или меньше */
+        @media (max-width: 768px) {
+
+          .hero-content {
+            position: absolute;
+            top: 23%; /* Было 25%, стало 23% - еще чуть-чуть поднимаем блок */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+          }
+
+          .mobile-hero-image {
+            display: block;
+            position: absolute;
+            bottom: 18%; /* Было 15%, стало 18% - еще чуть-чуть поднимаем картинку */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65%;
+            max-width: 280px;
+          }
+
+          .hero-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+          }
+
+          .carousel-container {
+            display: none;
+          }
+
+          .mobile-hero-image img {
+            width: 100%;
+            height: auto;
+          }
+        }
     </style>
 </head>
 <body>
@@ -611,6 +686,10 @@
             <img src="assets/images/book8.jpg" alt="Обложка фотокниги 8" class="carousel-image">
             <img src="assets/images/book9.jpg" alt="Обложка фотокниги 9" class="carousel-image">
           </div>
+        </div>
+        <!-- Эту картинку будет видно только на мобильных -->
+        <div class="mobile-hero-image">
+          <img src="6. osenniy.jpg" alt="Выпускная фотокнига">
         </div>
         <!-- Общий контейнер для всего контента в шапке -->
         <div class="hero-content">
